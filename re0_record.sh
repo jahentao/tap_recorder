@@ -35,11 +35,12 @@ fi
 jingyan_time=120
 
 # 是否起始时加体力
-if [ ! $4 ]; then
+if [ ! $4 -o $4 == "true" ]; then
     addstrength=true
 else
 	addstrength=false
 fi
+# echo $addstrength
 
 # 命令使用示例：
 # ./re0_record.sh 4 1 3 false
@@ -53,7 +54,7 @@ fi
 
 
 for ((k=1; k<=$drug_num; k++)); do
-	if [ !addstrength ]; then
+	if [ ! addstrength ]; then
 		addstrength=true
 	else
 		# 点击加体力
@@ -74,7 +75,9 @@ for ((k=1; k<=$drug_num; k++)); do
 	sleep $sleep_time
 
 	# 点击进阶者任务
-	$EX shell input tap 1171 499
+	# $EX shell input tap 1171 499
+	# 点击高手任务
+	$EX shell input tap 1171 596
 	sleep $sleep_time
 	# 点击开始战斗
 	$EX shell input tap 960 617

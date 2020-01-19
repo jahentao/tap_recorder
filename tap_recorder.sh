@@ -1,9 +1,9 @@
 #!/bin/bash
 # 在WSL环境下测试，WSL下使用lsusb无法检测到手机，adb指令无法使用，因此改用Windows下的adb
 # 如需在Linux下测试，将./adb.exe改为adb即可
-EX=./adb.exe
+EX=../adb.exe
 # 屏幕宽度
-width=1080
+width=720
 
 if [ $# = 2 ]; then
 	if [ $1 = "-r" ]; then
@@ -27,7 +27,7 @@ else
 	exit 0
 fi
 
-if [ record = true ]; then
+if [ $record = true ]; then
 	echo 记录到$2
 	echo 开始记录，按Ctrl+C退出
 	j=1
@@ -77,15 +77,13 @@ else
 				else
 					inv=0
 				fi
-				echo 休眠$inv秒
-				sleep $inv
+				# echo 休眠$inv秒
+				# sleep $inv
 				# 横屏模式
 				echo 点击$y $[$width-$x]
-				$EX shell input tap $y $[$width-$x]
+				# $EX shell input tap $y $[$width-$x]
 
 				last_time=$time1
-			else
-				echo 发现无效记录点$time1，跳过
 			fi
 		done
 	done
