@@ -28,3 +28,7 @@ $ ./tap_recorder.sh <filename> <time>
 PS: 目前只支持横屏模式，屏幕宽度为1080像素，不同手机需要修改，竖屏需要改脚本
 
 PPS: 坐标记录可能会漏掉，不过脚本会自动跳过无效记录
+
+坐标横屏后的计算
+
+![坐标横屏](./resources/width_heigth.png)
