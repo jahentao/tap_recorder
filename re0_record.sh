@@ -34,6 +34,15 @@ fi
 # 经验刷本时间
 jingyan_time=120
 
+# 是否起始时加体力
+if [ ! $4 ]; then
+    addstrength=true
+else
+	addstrength=false
+fi
+
+# 命令使用示例：
+# ./re0_record.sh 4 1 3 false
 
 # 几个点一一调试如下：
 # 开始游戏后关闭提示框 ×
@@ -43,18 +52,21 @@ jingyan_time=120
 # 默认当前已经进入 日常选项卡 游戏界面
 
 
-
-for k in $(seq 1 2); do
-	# 点击加体力
-	$EX shell input tap 759 36
-	sleep $sleep_time
-	# 点击使用药品加体力
-	$EX shell input tap 759 486
-	sleep $sleep_time
-	echo "消耗$k瓶体力药"
-	# 点击空白处
-	$EX shell input tap 671 585
-	sleep $sleep_time
+for ((k=1; k<=$drug_num; k++)); do
+	if [ !addstrength ]; then
+		addstrength=true
+	else
+		# 点击加体力
+		$EX shell input tap 759 36
+		sleep $sleep_time
+		# 点击使用药品加体力
+		$EX shell input tap 759 486
+		sleep $sleep_time
+		echo "消耗$k瓶体力药"
+		# 点击空白处
+		$EX shell input tap 671 585
+		sleep $sleep_time
+	fi
 
     jinbi_k=1
 	# 点击金币任务，看情况，第一次进入任务界面需要，之后退出选择经验任务也需要
