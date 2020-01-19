@@ -95,6 +95,7 @@ else
 				# echo 点击$y $[$width-$x]
 				# 我也不知道为什么，从小米MIX2S真机的脚本（1080*2160）到模拟器中的屏幕（720*1080），有变化的偏差，随y远大近小
 				# 我调试用1.15*$length_rate进行了针对我的运行环境的修正
+                                # 实在不清楚，还是将模拟器自定义成和真机一样的屏幕尺寸，DPI 查询https://www.sven.de/dpi/
 				pos_x=$( echo "scale=0; $width_rate*($script_width-$x)" | bc)
 				# echo "$width_rate*($script_width-$x)=$pos_x" 
 				pos_y=$( echo "scale=0; (1.15*$length_rate)*$y" | bc)
