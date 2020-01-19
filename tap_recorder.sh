@@ -1,9 +1,11 @@
 #!/bin/bash
 # 在WSL环境下测试，WSL下使用lsusb无法检测到手机，adb指令无法使用，因此改用Windows下的adb
 # 如需在Linux下测试，将./adb.exe改为adb即可
-EX=../adb.exe
+# 小米使用文件夹里的adb ./adb.exe，模拟器使用提供的上层目录的adb ../adb.exe
+EX=./adb.exe
 # 屏幕宽度
-width=720
+width=1080
+height=2160
 
 if [ $# = 2 ]; then
 	if [ $1 = "-r" ]; then
@@ -77,11 +79,11 @@ else
 				else
 					inv=0
 				fi
-				# echo 休眠$inv秒
-				# sleep $inv
+				echo 休眠$inv秒
+				sleep $inv
 				# 横屏模式
 				echo 点击$y $[$width-$x]
-				# $EX shell input tap $y $[$width-$x]
+				$EX shell input tap $y $[$width-$x] 
 
 				last_time=$time1
 			fi
