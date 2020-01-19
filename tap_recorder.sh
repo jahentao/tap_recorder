@@ -27,7 +27,7 @@ else
 	exit 0
 fi
 
-if [ record = true ]; then
+if [ $record = true ]; then
 	echo 记录到$2
 	echo 开始记录，按Ctrl+C退出
 	j=1
