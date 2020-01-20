@@ -22,10 +22,10 @@ else
 	jinbirenwushu=$2
 fi
 # 金币刷本时间
-jinbi_time=120
+# 发现团队的等级提升之后，刷本的时间也会变化，设置的时间偏小不能应对这种变化，同时还要注意有没有队伍的变化
+jinbi_time=180
 
 # 刷经验任务数
-jingyanrenwushu=2
 if [ ! $3 ]; then
     jingyanrenwushu=2
 else
@@ -52,9 +52,9 @@ fi
 
 # 默认当前已经进入 日常选项卡 游戏界面
 
-
+consume_num=1
 for ((k=1; k<=$drug_num; k++)); do
-	if [ ! addstrength ]; then
+	if [ $addstrength = false ]; then
 		addstrength=true
 	else
 		# 点击加体力
@@ -63,7 +63,8 @@ for ((k=1; k<=$drug_num; k++)); do
 		# 点击使用药品加体力
 		$EX shell input tap 759 486
 		sleep $sleep_time
-		echo "消耗$k瓶体力药"
+		echo "消耗$consume_num瓶体力药"
+		let consume_num++
 		# 点击空白处
 		$EX shell input tap 671 585
 		sleep $sleep_time
@@ -116,7 +117,7 @@ for ((k=1; k<=$drug_num; k++)); do
 	$EX shell input tap 747 425
 	sleep $sleep_time
 
-	# 超过指定次数，点击退出关卡，
+	# 超过指定次数，点击退出关卡
 	$EX shell input tap 1061 620
 	sleep $sleep_time
 
