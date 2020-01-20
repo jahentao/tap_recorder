@@ -1,11 +1,14 @@
 #! /bin/bash
+# WSL环境下
+EX=../adb.exe
+
 # 在横屏模式下，手机模式 720*1080
 # [tap_recorder] ../adb.exe shell getevent -p | grep -e "0035" -e "0036"                                    master  ✗ ✭ ✱
 #                 0031  0032  0033  0034  0035  0036  0037  0038
 #                 0035  : value 0, min 0, max 720, fuzz 0, flat 0, resolution 0
 #                 0036  : value 0, min 0, max 1280, fuzz 0, flat 0, resolution 0
 #                 0031  0032  0033  0034  0035  0036  0037  0038
-EX=../adb.exe
+
 sleep_time=3
 fight_time=120
 # 几瓶体力药
@@ -49,6 +52,14 @@ fi
 # 开始游戏后关闭提示框 ×
 # $EX shell input tap 1155 116
 # sleep $sleep_time
+
+# 从游戏主界面开始
+# 点击故事
+$EX shell input tap 1108 396
+sleep $sleep_time
+# 点击日常
+$EX shell input tap 68 248
+sleep $sleep_time
 
 # 默认当前已经进入 日常选项卡 游戏界面
 
@@ -191,4 +202,7 @@ for ((k=1; k<=$drug_num; k++)); do
 	sleep $sleep_time
 done
 
+
+# 点击返回按钮
+$EX shell input tap 61 26
 
