@@ -70,62 +70,65 @@ for ((k=1; k<=$drug_num; k++)); do
 		sleep $sleep_time
 	fi
 
-    jinbi_k=1
-	# 点击金币任务，看情况，第一次进入任务界面需要，之后退出选择经验任务也需要
-	$EX shell input tap 732 405
-	sleep $sleep_time
-
-	# 点击进阶者任务
-	# $EX shell input tap 1171 499
-	# 点击高手任务
-	$EX shell input tap 1171 596
-	sleep $sleep_time
-	# 点击开始战斗
-	$EX shell input tap 960 617
-	sleep $sleep_time
-	# 点击开始挑战
-	$EX shell input tap 948 562
-	sleep $sleep_time
-	# 点击选择的默认队伍，开始挑战
-	$EX shell input tap 1116 664
-
-	# 等待2分钟(目前的队伍战斗水平)，战斗结束。以上每一步等待3秒
-	sleep $jinbi_time
-
-	echo "刷金币任务$jinbi_k"
-	let jinbi_k++
-
-	# 次数判断，指定次数内，继续挑战
-	while (( $jinbi_k <= $jinbirenwushu ))
-	do
-		# 胜利界面，点击画面继续
-		$EX shell input tap 747 425
+    if [ $jinbirenwushu -gt 0 ]; then
+    	jinbi_k=1
+		# 点击金币任务，看情况，第一次进入任务界面需要，之后退出选择经验任务也需要
+		$EX shell input tap 732 405
 		sleep $sleep_time
 
-		# 点击再次挑战
-		$EX shell input tap 256 626
+		# 点击进阶者任务
+		# $EX shell input tap 1171 499
+		# 点击高手任务
+		$EX shell input tap 1171 596
 		sleep $sleep_time
+		# 点击开始战斗
+		$EX shell input tap 960 617
+		sleep $sleep_time
+		# 点击开始挑战
+		$EX shell input tap 948 562
+		sleep $sleep_time
+		# 点击选择的默认队伍，开始挑战
+		$EX shell input tap 1116 664
 
 		# 等待2分钟(目前的队伍战斗水平)，战斗结束。以上每一步等待3秒
 		sleep $jinbi_time
 
 		echo "刷金币任务$jinbi_k"
 		let jinbi_k++
-	done
 
-	# 胜利界面，点击画面继续
-	$EX shell input tap 747 425
-	sleep $sleep_time
+		# 次数判断，指定次数内，继续挑战
+		while (( $jinbi_k <= $jinbirenwushu ))
+		do
+			# 胜利界面，点击画面继续
+			$EX shell input tap 747 425
+			sleep $sleep_time
 
-	# 超过指定次数，点击退出关卡
-	$EX shell input tap 1061 620
-	sleep $sleep_time
+			# 点击再次挑战
+			$EX shell input tap 256 626
+			sleep $sleep_time
 
-	# 点击返回按钮
-	$EX shell input tap 61 26
-	sleep $sleep_time
+			# 等待2分钟(目前的队伍战斗水平)，战斗结束。以上每一步等待3秒
+			sleep $jinbi_time
+
+			echo "刷金币任务$jinbi_k"
+			let jinbi_k++
+		done
+
+		# 胜利界面，点击画面继续
+		$EX shell input tap 747 425
+		sleep $sleep_time
+
+		# 超过指定次数，点击退出关卡
+		$EX shell input tap 1061 620
+		sleep $sleep_time
+
+		# 点击返回按钮
+		$EX shell input tap 61 26
+		sleep $sleep_time
+    fi
 
 
+    
 
 	jingyan_k=1
 	# 点击经验任务
