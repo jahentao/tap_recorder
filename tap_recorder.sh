@@ -17,6 +17,9 @@ if [ $# = 2 ]; then
 			echo $2: 不是一个数字
 			exit 0
 		fi
+		# 删除空行
+		dos2unix $1
+		sed -i '/^\s*$/d' $1
 		record=false
 	fi
 else
@@ -53,13 +56,13 @@ else
 			time1=${line:1:15}
 			type1=${line:44:2}
 			value1=${line:47:8}
-			#echo $time1 $type1 $value1
+			# echo $time1 $type1 $value1
 			let "i++"
 			line=`sed -n ${i}p $1`
 			time2=${line:1:15}
 			type2=${line:44:2}
 			value2=${line:47:8}
-			#echo $time2 $type2 $value2
+			# echo $time2 $type2 $value2
 			
 			if [ $time1 = $time2 ]; then
 				let "i++"
@@ -77,11 +80,11 @@ else
 				else
 					inv=0
 				fi
-				# echo 休眠$inv秒
-				# sleep $inv
+				echo sleep $inv
+				sleep $inv
 				# 横屏模式
-				echo 点击$y $[$width-$x]
-				# $EX shell input tap $y $[$width-$x]
+				echo $EX shell input tap $y $[$width-$x]
+				$EX shell input tap $y $[$width-$x]
 
 				last_time=$time1
 			fi
