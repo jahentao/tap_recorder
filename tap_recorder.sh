@@ -1,9 +1,12 @@
 #!/bin/bash
 # 在WSL环境下测试，WSL下使用lsusb无法检测到手机，adb指令无法使用，因此改用Windows下的adb
 # 如需在Linux下测试，将./adb.exe改为adb即可
+# 让打印到控制台的都是可执行的脚本
 EX=../adb.exe
+echo EX=../adb.exe
 # 屏幕宽度
 width=720
+echo "# 1280*720"
 
 if [ $# = 2 ]; then
 	if [ $1 = "-r" ]; then
@@ -18,7 +21,7 @@ if [ $# = 2 ]; then
 			exit 0
 		fi
 		# 删除空行
-		dos2unix $1
+		dos2unix $1 > /dev/null 2>&1
 		sed -i '/^\s*$/d' $1
 		record=false
 	fi
@@ -41,7 +44,7 @@ if [ $record = true ]; then
 		let "j++"
 	done
 else
-	echo 当前是横屏模式，读取$1文件，执行$2次
+	echo "#当前是横屏模式，读取$1文件，执行$2次"
 
 	for j in `seq 1 $2`
 	do
@@ -65,6 +68,7 @@ else
 			# echo $time2 $type2 $value2
 			
 			if [ $time1 = $time2 ]; then
+				# 过滤无效点击操作，将新操作写入
 				let "i++"
 				if [ $type1 = 35 ]; then
 					let x=16#$value1
@@ -83,7 +87,7 @@ else
 				echo sleep $inv
 				sleep $inv
 				# 横屏模式
-				echo $EX shell input tap $y $[$width-$x]
+				echo '$EX' shell input tap $y $[$width-$x]
 				$EX shell input tap $y $[$width-$x]
 
 				last_time=$time1
