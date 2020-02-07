@@ -148,8 +148,8 @@ for ((k=1; k<=$drug_num; k++)); do
 	$EX shell input tap 732 405
 	sleep $sleep_time
 
-	# 点击进阶者任务
-	$EX shell input tap 1171 499
+	# 点击高手任务
+	$EX shell input tap 1171 596
 	sleep $sleep_time
 	# 点击开始战斗
 	$EX shell input tap 960 617
